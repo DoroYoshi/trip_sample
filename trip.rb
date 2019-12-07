@@ -6,31 +6,35 @@ puts <<~TEXT
 TEXT
 
 print "プランを選択 > "
-plan = gets
+plan = gets.to_i
 
-if plan.to_i == 1
+if plan == 1
   puts "沖縄旅行ですね、何人で行きますか？"
-  plan = 10000
-elsif plan.to_i == 2
+  price = 10000
+elsif plan == 2
   puts "北海道旅行ですね、何人で行きますか？"
-  plan = 20000
-elsif plan.to_i == 3
+  price = 20000
+elsif plan == 3
   puts "九州旅行ですね、何人で行きますか？"
-  plan = 15000
+  price = 15000
 else
   puts "不正な入力です。"
 end
 
-print "人数を選択 > "
-count = gets
+if plan == 1 || plan == 2 || plan == 3
+  print "人数を選択 > "
+  count = gets.to_i
 
-if count.to_i >= 5
-  puts "5人以上なので10%割引となります"
-  pay = plan * count.to_i
-  puts "合計料金：¥#{(pay*0.9).to_i}"
-elsif count.to_i < 5 && count.to_i >0
-  pay = plan * count.to_i
-  puts "合計料金：¥#{pay}"
+  if count >= 5
+    puts "5人以上なので10%割引となります"
+    pay = price * count
+    puts "合計料金：¥#{(pay*0.9).to_i}"
+  elsif count < 5 && count >0
+    pay = price * count
+    puts "合計料金：¥#{pay}"
+  else
+    puts "不正な入力です。"
+  end
 else
-  puts "不正な入力です。"
 end
+
